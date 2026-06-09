@@ -1,0 +1,172 @@
+{{SVG|map}}
+{{Allow Overwriting}}
+== {{int:filedesc}} ==
+{{Information
+
+|Description={{en|1=The main biomes in the world. Drawn by hand using maps.
+{{legend|#B9B9B9|Ice sheet and polar desert}}
+{{legend|#96D1C3|Tundra}}
+{{legend|#006259|Taiga}}
+{{legend|#9BDC52|Temperate broadleaf and mixed forest}}
+{{legend|#F6EA64|Temperate steppe}}
+{{legend|#097309|Subtropical moist forest}}
+{{legend|#866B90|Mediterranean vegetation}}
+{{legend|#648B64|Tropical and subtropical moist broadleaf forests}}
+{{legend|#8B4D32|Arid desert}}
+{{legend|#B26A48|Xeric shrubland}}
+{{legend|#927A3D|Dry steppe}}
+{{legend|#DAB17D|Semiarid desert}}
+{{legend|#C7C349|Grass savanna}}
+{{legend|#A49E13|Tree savanna}}
+{{legend|#6B842B|Tropical and subtropical dry forest}}
+{{legend|#005100|Tropical rainforest}}
+{{legend|#9EB6D7|Alpine tundra}}
+{{legend|#328D8E|Montane forest}}}}
+{{it|1=I principali biomi nel mondo. 
+{{legend|#B9B9B9|Coltre di ghiaccio e deserto polare}}
+{{legend|#96D1C3|Tundra artica}}
+{{legend|#006259|Taiga}}
+{{legend|#9BDC52|Foresta temperata di latifoglie e mista}}
+{{legend|#F6EA64|Steppa temperata}}
+{{legend|#097309|Foresta umida subtropicale}}
+{{legend|#866B90|Vegetazione Mediterranea}}
+{{legend|#648B64|Foresta umida di latifoglie tropicale e subtropicale}}
+{{legend|#8B4D32|Deserto arido}}
+{{legend|#B26A48|Deserto e macchia xerofila}}
+{{legend|#927A3D|Steppa arida}}
+{{legend|#DAB17D|Deserto semiarido}}
+{{legend|#C7C349|Savana erbosa}}
+{{legend|#A49E13|Savana arborea}}
+{{legend|#6B842B|Foresta monsonica}}
+{{legend|#005100|Foresta pluviale tropicale}}
+{{legend|#9EB6D7|Tundra alpina}}
+{{legend|#328D8E|Foresta montana}}}}
+{{es|1=The main biomes in the world. 
+{{legend|#B9B9B9|Capa de hielo y desierto polar}}
+{{legend|#96D1C3|Tundra}}
+{{legend|#006259|Taiga}}
+{{legend|#9BDC52|Bosques templados de frondosas y mixtos}}
+{{legend|#F6EA64|Estepa templada}}
+{{legend|#097309|Bosques humedos subtropical}}
+{{legend|#866B90|Vegetación mediterranea}}
+{{legend|#648B64|Bosque húmedo tropical y subtropical de frondosas}}
+{{legend|#8B4D32|Desierto árido}}
+{{legend|#B26A48|Matorral xerófilo}}
+{{legend|#927A3D|Estepa seca}}
+{{legend|#DAB17D|Desierto semiárido}}
+{{legend|#C7C349|Sabana de hierba}}
+{{legend|#A49E13|Tree savanna}}
+{{legend|#6B842B|Bosque seco tropical}}
+{{legend|#005100|Selva tropical}}
+{{legend|#9EB6D7|Pradera alpina}}
+{{legend|#328D8E|Bosque de montaña}}}}
+{{Zh|1=世界陆地自然区域分布。 
+{{legend|#B9B9B9|冰盖及极地荒漠}}
+{{legend|#96D1C3|苔原}}
+{{legend|#006259|针叶林}}
+{{legend|#9BDC52|温带阔叶林}}
+{{legend|#F6EA64|温带草原}}
+{{legend|#097309|亚热带雨林}}
+{{legend|#866B90|地中海硬叶林}}
+{{legend|#648B64|季雨林}}
+{{legend|#8B4D32|沙漠}}
+{{legend|#B26A48|近沙漠}}
+{{legend|#927A3D|干旱草原}}
+{{legend|#DAB17D|半干旱沙漠}}
+{{legend|#C7C349|稀树草原}}
+{{legend|#A49E13|多树草原}}
+{{legend|#6B842B|亚热带干燥林}}
+{{legend|#005100|热带雨林}}
+{{legend|#9EB6D7|高山苔原}}
+{{legend|#328D8E|山地森林}}}}
+{{pl|1=Główne biomy występujące na Ziemi.
+{{legend|#b9b9b9|pokrywy lodowe i pustynie polarne}}
+{{legend|#96d1c3|tundra}}
+{{legend|#006259|tajga}}
+{{legend|#9bdc52|las liściasty strefy umiarkowanej}}
+{{legend|#f6ea64|stepy}}
+{{legend|#097309|podzwrotnikowy las tropikalny}}
+{{legend|#866b90|roślinność śródziemnomorska}}
+{{legend|#648b64|lasy monsunowe}}
+{{legend|#8b4d32|pustynie jałowe}}
+{{legend|#b26a48|sucha roślinność}}
+{{legend|#927a3d|suche stepy}}
+{{legend|#dab17d|pustynie półsuche}}
+{{legend|#c7c349|sawanna trawiasta}}
+{{legend|#a49e13|sawanna drzewiasta}}
+{{legend|#6b842b|las podzwrotnikowy suchy}}
+{{legend|#005100|lasy tropikalne}}
+{{legend|#9eb6d7|tundra alpejska}}
+{{legend|#328d8e|lasy górskie}}}}
+{{fr|1=Les principaux biomes du monde.
+{{legend|#B9B9B9|Inlandsis et déserts polaires}} 
+{{legend|#96D1C3|Toundra}} 
+{{legend|#006259|Taïga}} 
+{{legend|#9BDC52|Forêts feuillues caducifoliées tempérées}} 
+{{legend|#F6EA64|Prairies}} 
+{{legend|#097309|Forêts sempervirentes subtropicales}} 
+{{legend|#866B90|Forêts sempervirentes méditerranéennes}} 
+{{legend|#648B64|Forêts de mousson}} 
+{{legend|#8B4D32|Déserts arides}}  
+{{legend|#B26A48|Déserts et broussailles xérophytes}} 
+{{legend|#927A3D|Steppe aride}} 
+{{legend|#DAB17D|Déserts semi-arides}} 
+{{legend|#C7C349|Savanes}} 
+{{legend|#A49E13|Savanes et forêts claires}} 
+{{legend|#6B842B|Forêts tropicales caducifoliées}} 
+{{legend|#005100|Forêts sempervirentes tropicales}} 
+{{legend|#9EB6D7|Toundra alpine}} 
+{{legend|#328D8E|Forêts de montagne}}}}
+{{ru|1=Карта распределения основных биомов суши. 
+{{legend|#B9B9B9|Арктическая пустыня}}
+{{legend|#96D1C3|Тундра}}
+{{legend|#006259|Тайга}}
+{{legend|#9BDC52|Смешанный лес}}
+{{legend|#F6EA64|Лесостепь}}
+{{legend|#097309|Субтропический лес}}
+{{legend|#866B90|Жестколистные вечнозеленые леса и кустарники}}
+{{legend|#648B64|Муссонный лес}}
+{{legend|#8B4D32|Засушливая пустыня}}
+{{legend|#B26A48|Полупустыня}}
+{{legend|#927A3D|Засушливая степь}}
+{{legend|#DAB17D|Полузасушливая пустыня}}
+{{legend|#C7C349|Травянистая саванна}}
+{{legend|#A49E13|Древесная саванна}}
+{{legend|#6B842B|Сухие тропические леса}}
+{{legend|#005100|Влажные тропические леса}}
+{{legend|#9EB6D7|Альпийская тундра}}
+{{legend|#328D8E|Горный лес}}}}
+{{uk|1=Основні біоми Землі. 
+{{legend|#c0c0c0| Льодовики та Полярні пустелі}}
+{{legend|#9fd6c9| Тундра}}
+{{legend|#006d64| Тайга}}
+{{legend|#a4e05d| Листопадні ліси помірного клімату}}
+{{legend|#f7ec6f| Степи}}
+{{legend|#0d7e0d| Субтропічні дощові ліси}}
+{{legend|#907699| Чапараль}}
+{{legend|#6f956f| Мусонні ліси}}
+{{legend|#95583c| Пустелі}}
+{{legend|#b97553| Скреб}}
+{{legend|#9b8447| Сухі степи}}
+{{legend|#deb887| Напівпустелі}}
+{{legend|#cdc954| Савани}}
+{{legend|#aca719| Лісостеп}}
+{{legend|#768e34| Субтропічний сухий ліс}}
+{{legend|#005c00| Тропічний дощовий ліс}}
+{{legend|#a7bddb| Альпійські луки}}
+{{legend|#3c9798| Гірські криволісся}}}}
+
+|Source=The blank world map in Commons and ''WSOY Iso karttakirja'' for the information.
+Referred to over a hundred sources, but here are some of the more extensively used ones: [https://ecoregions.appspot.com/], [https://dopa-explorer.jrc.ec.europa.eu/], [https://people.ohio.edu/dyer/forest_regions.html], [https://www.fao.org/3/W4442E/w4442e05.htm], [https://www.surfaceview.co.uk/storage/image/VMA0018.jpg], [https://upload.wikimedia.org/wikipedia/commons/4/4f/Vegetationszonen.png], [https://esdac.jrc.ec.europa.eu/images/Eudasm/Africa/images/maps/download/afr_veg.jpg], [https://www.researchgate.net/profile/Julie-Morin-9/publication/319979374/figure/fig2/AS:614404802478081@1523496928789/UNESCO-AETFAT-UNSO-Whites-vegetation-map-of-Africa-The-Guineo-Congolian-regional.png], [https://www.researchgate.net/profile/Andrea-Kay/publication/276452894/figure/fig1/AS:623557285523457@1525679050775/Map-of-study-area-showing-modern-potential-natural-vegetation-simplified-from-White.png], [https://i.pinimg.com/originals/5d/b3/b5/5db3b5b71e47b5467d8df815cd525df5.png]
+|Date=2007-02-21
+|Author=Ville Koistinen (user [[User:Vzb83|Vzb83]])
+|Permission=
+|other_versions={{DerivativeVersions|Kasvillisuus.png|Rain forest location map.png|Russia vegetation.png|Vegetation Africa.png|Vegetation Europe.png|Vegetation-no-legend.PNG|Vegetation-spanish.png|Vegetation_with_cities.png}}
+}}
+{{Convert to SVG|biogeographical map}}
+{{opaque}}
+
+== {{int:license-header}} ==
+{{self|GFDL|Cc-by-sa-3.0-migrated|Cc-by-sa-2.5,2.0,1.0}}
+
+[[Category:Biogeographical maps of the world]]
