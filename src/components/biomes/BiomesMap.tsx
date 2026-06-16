@@ -1,3 +1,5 @@
+import { useEffect, useRef } from "react";
+import gsap from "gsap"
 
 interface BiomesMapProps {
   onBiomeSelect: (id: string) => void;
@@ -5,9 +7,31 @@ interface BiomesMapProps {
 }
 
 export default function BiomesMap({ onBiomeSelect, selectedBiomes }: BiomesMapProps) {
+  const svgRef = useRef<SVGSVGElement>(null)
+  useEffect(() => {
+    if(svgRef.current) {
+      const biomes = svgRef.current.querySelectorAll("g[id]")
+      gsap.fromTo(biomes,
+        {
+          opacity: 0,
+          scale: 1.1,
+          transformOrigin: "center center"
+        },
+        {
+          opacity: 1,
+          scale: 1,
+          duration: 1.5,
+          ease: "power1.out",
+          transformOrigin: "center center"
+        }
+      );
+    }
+  }, [])
+
+
   return (
     <>
-      <svg className="w-full h-auto" viewBox="0 0 534 257" xmlns="http://www.w3.org/2000/svg">
+      <svg ref={svgRef} className="w-full h-auto" viewBox="0 0 534 257" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
         <g id="Group 1">
           <g id="hemi-hylea"  fill={selectedBiomes.includes('hemi-hylea') ? "#07E301" : "#BEBEBE"}  clipPath="url(#clip0_114_17878)" onClick={(e) => { e.stopPropagation(); onBiomeSelect('hemi-hylea'); }} className={`cursor-pointer` }>
             <g id="&#225;&#131;&#150;&#225;&#131;&#157;&#225;&#131;&#155;&#225;&#131;&#152;&#225;&#131;&#148;&#225;&#131;&#160;&#225;&#131;&#152;_&#225;&#131;&#161;&#225;&#131;&#144;&#225;&#131;&#160;&#225;&#131;&#162;&#225;&#131;&#167;&#225;&#131;&#154;&#225;&#131;&#152;&#225;&#131;&#161;_&#225;&#131;&#161;&#225;&#131;&#163;&#225;&#131;&#145;&#225;&#131;&#144;&#225;&#131;&#156;&#225;&#131;&#162;&#225;&#131;&#144;&#225;&#131;&#160;&#225;&#131;&#165;&#225;&#131;&#162;&#225;&#131;&#152;&#225;&#131;&#153;&#225;&#131;&#163;&#225;&#131;&#154;&#225;&#131;&#152;_&#225;&#131;&#176;&#225;&#131;&#148;&#225;&#131;&#155;&#225;&#131;&#152;&#225;&#131;&#176;&#225;&#131;&#152;&#225;&#131;&#154;&#225;&#131;&#148;&#225;&#131;&#144;">
