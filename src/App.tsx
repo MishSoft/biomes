@@ -1,6 +1,7 @@
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import BiomesMap from './components/biomes/BiomesMap';
 import { biomesInfo } from './data/biomesInfo';
+import { PopUp } from './components/PopUp';
 
 const App = () => {
   const allIds = biomesInfo.map(b => b.id);
@@ -13,11 +14,11 @@ const App = () => {
     name: string;
     color: string;
     x: number;
+    clickX: number;
     y: number;
-    isBottom?: boolean;
+    position: 'top' | 'bottom' | 'left-side' | 'right-side'
   } | null>(null);
 
-  // 🎯 'e' არის MouseEvent რუკიდან კლიკისას, ან null ქვედა ღილაკიდან კლიკისას
   const handleBiomeSelect = (id: string, e: React.MouseEvent | null = null) => {
     const biome = biomesInfo.find(item => item.id === id);
 
@@ -26,9 +27,11 @@ const App = () => {
         return;
       }
 
-      if (activeBiome && activeBiome.name === biome.name && e === null) {
+      const isButtonClick = document.activeElement?.tagName === 'BUTTON';
+      if (activeBiome && activeBiome.name === biome.name && e === null && isButtonClick) {
         return;
       }
+
       setSelectedBiomes([id]);
 
       if (e) {
@@ -40,63 +43,86 @@ const App = () => {
 
           const popupHalfWidth = 145;
           const padding = 10;
-          const minX = popupHalfWidth + padding;
-          const maxX = rect.width - popupHalfWidth - padding;
-          const x = Math.max(minX, Math.min(maxX, rawX));
 
-          const minTopSpace = 160;
-          const isBottom = rawY < minTopSpace;
+          const isRightSide = rawX < popupHalfWidth + padding;
+          const isLeftSide = rawX > rect.width - popupHalfWidth - padding;
 
-          setActiveBiome({ name: biome.name, color: biome.color, x, y: rawY, isBottom });
-        } else {
-          setActiveBiome({ name: biome.name, color: biome.color, x: e.clientX, y: e.clientY });
+          const position: 'top' | 'bottom' | 'left-side' | 'right-side' = isRightSide
+            ? 'right-side'
+            : isLeftSide
+              ? 'left-side'
+              : rawY < 160
+                ? 'bottom'
+                : 'top';
+
+          const finalX = isRightSide ? rawX + 16 : isLeftSide ? rawX - 16 : rawX;
+
+          setActiveBiome({
+            name: biome.name,
+            color: biome.color,
+            x: finalX,
+            clickX: rawX,
+            y: rawY,
+            position
+          });
         }
       }
-      // 🎲 ქეისი 2: კლიკი ქვედა ღილაკზე -> დინამიური რანდომიზაცია SVG Path-ების მიხედვით
       else {
         const mapContainer = document.querySelector('.relative-container');
-        // ვპოულობთ ყველა შვილ path-ს მშობელი ID-ის გავლით (მაგ: #desert path)
         const biomePaths = document.querySelectorAll(`#${id} path`);
 
         if (mapContainer && biomePaths.length > 0) {
           const containerRect = mapContainer.getBoundingClientRect();
 
-          // 1. რანდომად ვირჩევთ ერთ-ერთ შვილ path-ს
           const randomIndex = Math.floor(Math.random() * biomePaths.length);
           const randomPath = biomePaths[randomIndex];
-
-          // 2. ვიღებთ ამ კონკრეტული path-ის გეომეტრიულ კოორდინატებს ეკრანზე
           const pathRect = randomPath.getBoundingClientRect();
 
-          // 3. ვიანგარიშებთ მის ცენტრს მთლიან კონტეინერთან მიმართებაში
           const pathCenterX = (pathRect.left + pathRect.width / 2) - containerRect.left;
           const pathCenterY = (pathRect.top + pathRect.height / 2) - containerRect.top;
 
-          // 4. უსაფრთხოების შემოწმება X ღერძისთვის (რომ პოპაპი რუკის საზღვრებს არ გასცდეს)
           const popupHalfWidth = 145;
           const padding = 10;
-          const minX = popupHalfWidth + padding;
-          const maxX = containerRect.width - popupHalfWidth - padding;
-          const x = Math.max(minX, Math.min(maxX, pathCenterX));
 
-          // 5. ვსაზღვრავთ პოპაპი ზემოდან გამოჩნდეს თუ ქვემოდან
-          const minTopSpace = 160;
-          const isBottom = pathCenterY < minTopSpace;
+          const isRightSide = pathCenterX < popupHalfWidth + padding;
+          const isLeftSide = pathCenterX > containerRect.width - popupHalfWidth - padding;
+
+          const position: 'top' | 'bottom' | 'left-side' | 'right-side' = isRightSide
+            ? 'right-side'
+            : isLeftSide
+              ? 'left-side'
+              : pathCenterY < 160
+                ? 'bottom'
+                : 'top';
+
+          const finalX = isRightSide ? pathCenterX + 16 : isLeftSide ? pathCenterX - 16 : pathCenterX;
 
           setActiveBiome({
             name: biome.name,
             color: biome.color,
-            x,
+            x: finalX,
+            clickX: pathCenterX,
             y: pathCenterY,
-            isBottom
+            position
           });
-        } else {
-          // Fallback: თუ SVG ელემენტები ჯერ არ ჩატვირთულა, ცენტრში დასვამს დროებით
-          setActiveBiome({ name: biome.name, color: biome.color, x: 150, y: 150, isBottom: false });
         }
       }
     }
   };
+
+  useEffect(() => {
+    if (!activeBiome) return;
+
+    const handleResize = () => {
+      const currentBiome = biomesInfo.find(b => b.name === activeBiome.name);
+      if (currentBiome) {
+        handleBiomeSelect(currentBiome.id, null);
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [activeBiome]);
 
   const handleAllSelectAll = () => {
     if (!isAllSelected) {
@@ -138,8 +164,8 @@ const App = () => {
     <div className="flex min-h-screen gap-0 bg-[#eeeeee] font-sans text-[#1a1a1a] overflow-x-hidden">
       <div className="flex-1 flex flex-col min-w-0 md:p-4 w-full box-border max-w-348 mx-auto">
 
-        <div className="relative lg:after:hidden after:absolute after:content-[''] after:left-0 after:top-0 after:w-full after:h-full after:bg-transparent relative-container w-full h-auto max-w-331 mx-auto [&_svg]:w-full [&_svg]:h-auto [&_svg]:block [&_g[id]]:transition-all [&_g[id]]:duration-250">
-          {/* რუკიდან კლიკისას გადაეცემა ივენთიც (e) */}
+        {/* რუკის კონტეინერი */}
+        <div className="relative after:absolute after:w-full after:h-full mt-10 after:top-0 after:bg-transparent md:after:hidden relative-container w-full h-auto max-w-331 mx-auto [&_svg]:w-full [&_svg]:h-auto [&_svg]:block [&_g[id]]:transition-all [&_g[id]]:duration-250">
           <BiomesMap onBiomeSelect={(id, e) => handleBiomeSelect(id, e)} selectedBiomes={selectedBiomes} />
 
           {activeBiome && (
@@ -148,19 +174,23 @@ const App = () => {
               effectColor={activeBiome.color}
               onClose={handleClosePopUp}
               x={activeBiome.x}
+              clickX={activeBiome.clickX}
               y={activeBiome.y}
-              isBottom={activeBiome.isBottom}
+              position={activeBiome.position}
             />
           )}
-          <div className='md:hidden absolute right-4 '>
-            {
-            activeBiome && (
-                <a href='/' className='flex items-center gap-2 border border-[#E0E0E0] bg-white  rounded-xl p-3'>
-                  <span>{activeBiome.name} {">"}</span>
-                  <span className='w-1.75 h-1.75 rounded-full'
-                    style={{ backgroundColor: activeBiome.color }}
-                  ></span>
-                </a>
+
+          {/* მობილურის ლინკი */}
+          <div className='sm:hidden absolute right-4 z-50'>
+            {activeBiome && (
+              <a href='/' className='flex items-center gap-2 border border-[#E0E0E0] bg-white rounded-xl p-3'>
+                <span className='flex items-center gap-2 leading-7.5 text-[13px] font-semibold'>ბიომის გვერდი
+                  <img src="/icons/mobile_link_iconr.svg" alt="" className='w-3 h-3' />
+                </span>
+                <span className='w-1.75 h-1.75 rounded-full shrink-0'
+                  style={{ backgroundColor: activeBiome.color }}
+                ></span>
+              </a>
             )}
           </div>
         </div>
@@ -174,7 +204,6 @@ const App = () => {
               <span className={`w-2 h-2 rounded-[100px] ${selectedBiomes.length < allIds.length ? "bg-white opacity-70" : "bg-[#E6E6E6]"}`}></span>
               <span className={`${selectedBiomes.length < allIds.length ? "text-[#666666]" : "text-white"} text-[12px]`}>ყველა</span>
             </button>
-
           </div>
 
           <div className={`lg:relative flex-1 min-w-0 w-full max-w-full box-border lg:after:absolute after:content-[''] after:pointer-events-none after:z-40 lg:after:bg-linear-to-r ${scrollPosstion.left ? "after:from-[#F0F0EE]" : "after:from-transparent"} after:to-transparent after:w-10 after:h-full after:top-0 after:left-0 lg:before:absolute lg:before:content-[''] before:pointer-events-none before:z-40 lg:before:bg-linear-to-l ${scrollPosstion.right ? "before:from-[#F0F0EE]" : "before:from-transparent"} before:to-transparent before:w-10 before:h-full before:top-0 before:right-0`}>
@@ -199,7 +228,6 @@ const App = () => {
                       backgroundColor: isSelectedBiome ? `${biome.color}20` : "white",
                       border: isSelectedBiome ? `1px solid ${biome.color}` : "1px solid #A8A8A8"
                     }}
-                    // 🎯 ქვედა ღილაკიდან კლიკისას მხოლოდ id-ს ვატანთ (e იქნება null)
                     onClick={() => handleBiomeSelect(biome.id)}
                     title={biome.name}
                   >
@@ -225,63 +253,3 @@ const App = () => {
 };
 
 export default App;
-
-
-
-type PopUpType = {
-  selectBiomeName: string;
-  effectColor: string;
-  x: number;
-  y: number;
-  isBottom?: boolean;
-  onClose: () => void;
-}
-
-export const PopUp = ({ selectBiomeName, effectColor, x, y, isBottom, onClose }: PopUpType) => {
-  return (
-    <div
-      className='absolute shadow-2xl hidden xl:block shadow-black/5 max-w-72.25 w-full z-50 transition-all duration-250'
-      style={{
-        left: `${x}px`,
-        top: `${y}px`,
-        transform: isBottom ? 'translate(-50%, 0%)' : 'translate(-50%, -100%)',
-        marginTop: isBottom ? '14px' : '-14px'
-      }}
-    >
-      <div className='relative w-full overflow-hidden px-2.5 py-4 bg-white rounded-3xl flex flex-col gap-6'>
-        <div
-          className={`absolute w-full left-0 h-1.5 ${isBottom ? 'bottom-0 rounded-b-3xl' : 'top-0 rounded-t-3xl'}`}
-          style={{ backgroundColor: effectColor }}
-        />
-
-        <div className='flex items-center justify-between'>
-          <div className='flex items-center gap-1 min-w-0'>
-            <span
-              className='w-3.5 h-3.5 rounded-full shrink-0'
-              style={{ backgroundColor: effectColor }}
-            />
-            <span className='text-[12px] truncate'>{selectBiomeName}</span>
-          </div>
-          <button onClick={onClose} className='text-center w-6 h-6 cursor-pointer font-bold text-gray-400 hover:text-black'>
-            X
-          </button>
-        </div>
-
-        <button
-          className='py-3.25 cursor-pointer w-full rounded-xl text-white font-medium flex justify-center items-center gap-1'
-          style={{ backgroundColor: effectColor }}
-        >
-          <span>ბიომის გვერდი</span>
-          <span> {">"} </span>
-        </button>
-      </div>
-
-      <div
-        className={`absolute w-6.25 h-4.5 bg-white [clip-path:polygon(50%_0%,0%_100%,100%_100%)] left-[50%] translate-x-[-50%] ${isBottom
-          ? 'rotate-0 -top-3.5'
-          : 'rotate-180 -bottom-3.5'
-          }`}
-      />
-    </div>
-  );
-};
